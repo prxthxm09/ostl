@@ -2,24 +2,24 @@ echo "enter coefficients of quadratic equation"
 read a
 read b
 read c
-d=`expr $b \* $b - 4 \* $a \* $c`
-d1=`echo "scale=2; sqrt($d)" | bc -l`
-echo $d1
+d=$((b*b - 4*a*c))
 if [ $d -gt 0 ]
 then
+	d1=$(echo "sqrt($d)" | bc)
 	flag=1
-	root1=`expr (-$d + $d1) \/ (2 \* $a) `
-	root2=`expr (-$d - $d1) \/ (2 \* $a) `
+	root1=$(((-b+d1)/(2*a)))
+	root2=$(((-b-d1)/(2*a)))
 elif [ $d -eq 0 ]
 then
 	flag=2
-	r=`expr (-$b) \/ (2 \* $a) `
+	r=$((-b/(2*a)))
 elif [ $d -lt 0 ]
 then
 	flag=3
-	d2=`echo "scale=2; sqrt(-$d)" | bc -l`
-	re=`expr (-$b) \/ (2 \* $a) `
-	im=`expr $d2 \/ (2 \* $a) `
+	d3=$((-1*d))
+	d2=$(echo "sqrt($d3)" | bc)
+	re=$((-b/(2*a)))
+	im=$((d2/(2*a))) 
 fi
 echo 
 case $flag in

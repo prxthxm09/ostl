@@ -5,4 +5,4 @@ for i in $(seq 1 $num)
 do
 fact=`expr $fact \* $i`
 done
-echo $fact
+echo factorial is $fact
